@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Future Academy - Admission Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    h1, h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    form {
+      display: grid;
+      gap: 15px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .grid {
+      display: grid;
+      gap: 15px;
+    }
+    .grid-2 {
+      grid-template-columns: 1fr 1fr;
+    }
+    button {
+      padding: 12px;
+      border: none;
+      background: #3498db;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Future Academy</h1>
+    <h2>Admission Form</h2>
+    <form id="admissionForm">
+      <!-- Personal Details -->
+      <h3>Personal Details</h3>
+      <div class="grid grid-2">
+        <div>
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" required>
+        </div>
+        <div>
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div>
+          <label for="gender">Gender</label>
+          <select id="gender" name="gender" required>
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="contact">Contact Number</label>
+          <input type="tel" id="contact" name="contact" required>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div>
+          <label for="email">Email ID</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+          <label for="address">Full Address</label>
+          <textarea id="address" name="address" rows="2" required></textarea>
+        </div>
+      </div>
+
+      <!-- Academic Details -->
+      <h3>Academic Details</h3>
+      <h4>10th (Matriculation)</h4>
+      <div class="grid grid-2">
+        <div>
+          <label for="school10">School Name</label>
+          <input type="text" id="school10" name="school10" required>
+        </div>
+        <div>
+          <label for="board10">Board</label>
+          <input type="text" id="board10" name="board10" required>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div>
+          <label for="year10">Year of Passing</label>
+          <input type="number" id="year10" name="year10" required>
+        </div>
+        <div>
+          <label for="percent10">Percentage/CGPA</label>
+          <input type="text" id="percent10" name="percent10" required>
+        </div>
+      </div>
+
+      <h4>12th (Higher Secondary)</h4>
+      <div class="grid grid-2">
+        <div>
+          <label for="school12">School Name</label>
+          <input type="text" id="school12" name="school12" required>
+        </div>
+        <div>
+          <label for="board12">Board</label>
+          <input type="text" id="board12" name="board12" required>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div>
+          <label for="year12">Year of Passing</label>
+          <input type="number" id="year12" name="year12" required>
+        </div>
+        <div>
+          <label for="percent12">Percentage/CGPA</label>
+          <input type="text" id="percent12" name="percent12" required>
+        </div>
+      </div>
+
+      <!-- Program Selection -->
+      <h3>Program Selection</h3>
+      <label for="course">Select Course</label>
+      <select id="course" name="course" required>
+        <option value="">Choose a program</option>
+        <option>B.Tech Computer Science</option>
+        <option>BBA</option>
+        <option>B.Com</option>
+        <option>B.Sc</option>
+        <option>MBA</option>
+        <option>M.Tech</option>
+      </select>
+
+      <!-- Document Uploads -->
+      <h3>Upload Documents</h3>
+      <label for="photo">Passport Size Photograph</label>
+      <input type="file" id="photo" name="photo" accept="image/*" required>
+      <label for="marks10">10th Marksheet</label>
+      <input type="file" id="marks10" name="marks10" accept=".pdf,.jpg,.png" required>
+      <label for="marks12">12th Marksheet</label>
+      <input type="file" id="marks12" name="marks12" accept=".pdf,.jpg,.png" required>
+      <label for="idproof">ID Proof (Aadhar/Passport)</label>
+      <input type="file" id="idproof" name="idproof" accept=".pdf,.jpg,.png" required>
+
+      <!-- Declaration -->
+      <div>
+        <input type="checkbox" id="declaration" required>
+        <label for="declaration">I hereby declare that the information provided is true and correct.</label>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit">Submit Application</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('admissionForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Your application has been submitted successfully! (Demo only)');
+    });
+  </script>
+</body>
+</html>
