@@ -3,218 +3,227 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Future Academy - Admission Form</title>
+  <title>Future Academy Admission Form</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f4f6fb;
+      background-color: #f4f7fb;
       margin: 0;
       padding: 0;
     }
     .container {
-      max-width: 700px;
-      margin: 40px auto;
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 60%;
+      margin: 30px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
     }
     h1 {
       text-align: center;
-      color: #2c3e50;
-      margin-bottom: 5px;
-    }
-    h2 {
-      text-align: center;
-      color: #34495e;
-      margin-top: 0;
-      font-size: 18px;
-      font-weight: normal;
-      margin-bottom: 25px;
-    }
-    form {
-      display: grid;
-      gap: 20px;
+      color: #2b3a67;
     }
     label {
       font-weight: bold;
       display: block;
-      margin-bottom: 6px;
-      color: #2c3e50;
+      margin: 12px 0 5px;
     }
-    input, select, textarea {
+    input, select {
       width: 100%;
-      padding: 10px;
+      padding: 8px;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 14px;
     }
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+    input[type="radio"] {
+      width: auto;
+      margin-right: 6px;
     }
     .radio-group {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      margin-top: 6px;
+      margin: 8px 0;
     }
-    .radio-group input {
-      width: auto;
+    .section {
+      margin-top: 25px;
+      padding-top: 15px;
+      border-top: 2px solid #eee;
+    }
+    .subject-marks {
+      display: none;
+      margin-top: 15px;
     }
     button {
+      margin-top: 20px;
       padding: 12px;
-      border: none;
-      background: #3498db;
-      color: white;
+      background-color: #2b3a67;
+      color: #fff;
       font-size: 16px;
+      border: none;
       border-radius: 8px;
       cursor: pointer;
+      width: 100%;
     }
     button:hover {
-      background: #2980b9;
-    }
-    .section-title {
-      font-size: 16px;
-      font-weight: bold;
-      color: #34495e;
-      margin-bottom: -5px;
-      margin-top: 10px;
-      border-left: 4px solid #3498db;
-      padding-left: 8px;
+      background-color: #1f2a4d;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Future Academy</h1>
-    <h2>Admission Form</h2>
+    <h1>Future Academy Admission Form</h1>
     <form id="admissionForm">
-      
-      <!-- Personal Details -->
-      <div class="section-title">Personal Details</div>
-      <div class="grid-2">
-        <div>
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" name="fullName" required>
+
+      <!-- Personal Information -->
+      <div class="section">
+        <h2>Personal Information</h2>
+
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" required>
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <label>Gender</label>
+        <div class="radio-group">
+          <input type="radio" id="male" name="gender" value="Male" required> Male
+          <input type="radio" id="female" name="gender" value="Female" required> Female
         </div>
-        <div>
-          <label for="dob">Date of Birth</label>
-          <input type="date" id="dob" name="dob" required>
-        </div>
+
+        <label for="guardianName">Guardian's Name</label>
+        <input type="text" id="guardianName" name="guardianName" required>
+
+        <label for="relationship">Relationship</label>
+        <input type="text" id="relationship" name="relationship" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" pattern="^[0-9]{10}$" placeholder="Enter 10-digit number" required>
+        
+        <label for="email">Email (Gmail only)</label>
+        <input type="email" id="email" name="email" pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" placeholder="example@gmail.com" required>
       </div>
 
-      <div class="grid-2">
-        <div>
-          <label>Gender</label>
-          <div class="radio-group">
-            <label><input type="radio" name="gender" value="Male" required> Male</label>
-            <label><input type="radio" name="gender" value="Female"> Female</label>
-          </div>
-        </div>
-        <div>
-          <label for="contact">Contact Number</label>
-          <input type="tel" id="contact" name="contact" placeholder="+91XXXXXXXXXX" required>
-        </div>
+      <!-- Academic Information -->
+      <div class="section">
+        <h2>Academic Information</h2>
+
+        <!-- 10th -->
+        <h3>10th Standard</h3>
+        <label for="tenthMarks">Total Marks Obtained</label>
+        <input type="number" id="tenthMarks" name="tenthMarks" required>
+        <label for="tenthMax">Maximum Marks</label>
+        <input type="number" id="tenthMax" name="tenthMax" required>
+        <label for="tenthPercentage">Percentage</label>
+        <input type="text" id="tenthPercentage" name="tenthPercentage" readonly>
+
+        <!-- 12th -->
+        <h3>12th Standard</h3>
+        <label for="stream">Select Stream</label>
+        <select id="stream" name="stream" required>
+          <option value="">-- Select Stream --</option>
+          <option value="science-cs">Science (Computer Science)</option>
+          <option value="science-bio">Science (Biology + Maths)</option>
+          <option value="pure-science">Pure Science (Bio + CS, no Maths)</option>
+          <option value="commerce-ca">Commerce (with Computer Application)</option>
+          <option value="commerce-bm">Commerce (with Business Maths)</option>
+        </select>
+
+        <!-- Subject Marks Section -->
+        <div id="subjectMarks" class="subject-marks"></div>
+
+        <label for="twelfthPercentage">Percentage</label>
+        <input type="text" id="twelfthPercentage" name="twelfthPercentage" readonly>
       </div>
 
-      <div class="grid-2">
-        <div>
-          <label for="email">Email ID</label>
-          <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
-        </div>
-        <div>
-          <label for="address">Address</label>
-          <textarea id="address" name="address" rows="2" required></textarea>
-        </div>
-      </div>
-
-      <!-- Guardian Details -->
-      <div class="section-title">Guardian Details</div>
-      <div class="grid-2">
-        <div>
-          <label for="guardianName">Guardian Name</label>
-          <input type="text" id="guardianName" name="guardianName" required>
-        </div>
-        <div>
-          <label for="guardianRelation">Relationship</label>
-          <input type="text" id="guardianRelation" name="guardianRelation" required>
-        </div>
-      </div>
-
-      <!-- Academic Details -->
-      <div class="section-title">Academic Details</div>
-      <h4>10th (Matriculation)</h4>
-      <div class="grid-2">
-        <div>
-          <label for="school10">School Name</label>
-          <input type="text" id="school10" name="school10" required>
-        </div>
-        <div>
-          <label for="percent10">Percentage/CGPA</label>
-          <input type="text" id="percent10" name="percent10" required>
-        </div>
-      </div>
-
-      <h4>12th (Higher Secondary)</h4>
-      <div class="grid-2">
-        <div>
-          <label for="school12">School Name</label>
-          <input type="text" id="school12" name="school12" required>
-        </div>
-        <div>
-          <label for="percent12">Percentage/CGPA</label>
-          <input type="text" id="percent12" name="percent12" required>
-        </div>
-      </div>
-
-      <!-- Program Selection -->
-      <div class="section-title">Program Selection</div>
-      <label for="course">Select Course</label>
-      <select id="course" name="course" required>
-        <option value="">Choose a program</option>
-        <option>B.Tech Computer Science</option>
-        <option>BBA</option>
-        <option>B.Com</option>
-        <option>B.Sc</option>
-        <option>MBA</option>
-        <option>M.Tech</option>
-      </select>
-
-      <!-- Declaration -->
-      <div>
-        <input type="checkbox" id="declaration" required>
-        <label for="declaration">I hereby declare that the information provided is true and correct.</label>
-      </div>
-
-      <!-- Submit -->
       <button type="submit">Submit Application</button>
     </form>
   </div>
 
   <script>
-    document.getElementById('admissionForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+    const tenthMarks = document.getElementById("tenthMarks");
+    const tenthMax = document.getElementById("tenthMax");
+    const tenthPercentage = document.getElementById("tenthPercentage");
 
-      const phone = document.getElementById('contact').value.trim();
-      const email = document.getElementById('email').value.trim();
+    const streamSelect = document.getElementById("stream");
+    const subjectMarksDiv = document.getElementById("subjectMarks");
+    const twelfthPercentage = document.getElementById("twelfthPercentage");
 
-      // Phone validation (+91 + 10 digits)
-      const phonePattern = /^\+91\d{10}$/;
-      if (!phonePattern.test(phone)) {
-        alert("Phone number must start with +91 and contain exactly 10 digits.");
-        return;
+    // Auto calculate 10th %
+    function calculateTenth() {
+      if (tenthMarks.value && tenthMax.value) {
+        let perc = (parseFloat(tenthMarks.value) / parseFloat(tenthMax.value)) * 100;
+        tenthPercentage.value = perc.toFixed(2) + "%";
       }
+    }
+    tenthMarks.addEventListener("input", calculateTenth);
+    tenthMax.addEventListener("input", calculateTenth);
 
-      // Email validation (must end with @gmail.com)
-      if (!email.endsWith("@gmail.com")) {
-        alert("Email must be a valid Gmail address (ending with @gmail.com).");
-        return;
+    // 12th stream subjects
+    const subjects = {
+      "science-cs": ["Language", "English", "Physics", "Chemistry", "Mathematics", "Computer Science"],
+      "science-bio": ["Language", "English", "Physics", "Chemistry", "Mathematics", "Biology"],
+      "pure-science": ["Language", "English", "Physics", "Chemistry", "Computer Science", "Biology"],
+      "commerce-ca": ["Language", "English", "Commerce", "Accounts", "Computer Application", "Economics"],
+      "commerce-bm": ["Language", "English", "Commerce", "Accounts", "Business Mathematics", "Economics"]
+    };
+
+    streamSelect.addEventListener("change", function () {
+      subjectMarksDiv.innerHTML = "";
+      let stream = streamSelect.value;
+      if (subjects[stream]) {
+        subjects[stream].forEach(sub => {
+          let label = document.createElement("label");
+          label.innerText = sub + " Marks";
+          let input = document.createElement("input");
+          input.type = "number";
+          input.name = sub.toLowerCase().replace(" ", "_");
+          input.required = true;
+          subjectMarksDiv.appendChild(label);
+          subjectMarksDiv.appendChild(input);
+        });
+        subjectMarksDiv.style.display = "block";
+      } else {
+        subjectMarksDiv.style.display = "none";
       }
+    });
 
-      alert('Your application has been submitted successfully! (Demo only)');
-      this.reset();
+    // Auto calculate 12th %
+    subjectMarksDiv.addEventListener("input", function () {
+      let inputs = subjectMarksDiv.querySelectorAll("input[type='number']");
+      let total = 0, count = 0;
+      inputs.forEach(input => {
+        if (input.value) {
+          total += parseFloat(input.value);
+          count++;
+        }
+      });
+      if (count === inputs.length) {
+        let perc = (total / (count * 100)) * 100; // Assuming each subject is out of 100
+        twelfthPercentage.value = perc.toFixed(2) + "%";
+      }
+    });
+
+    // Prepend +91 to phone
+    const phoneField = document.getElementById("phone");
+    phoneField.addEventListener("focus", function () {
+      if (!phoneField.value.startsWith("+91")) {
+        phoneField.value = "+91";
+      }
+    });
+    phoneField.addEventListener("input", function () {
+      if (!phoneField.value.startsWith("+91")) {
+        phoneField.value = "+91";
+      }
+    });
+
+    // Form validation
+    document.getElementById("admissionForm").addEventListener("submit", function (e) {
+      if (!/^\+91[0-9]{10}$/.test(phoneField.value)) {
+        alert("Phone number must be +91 followed by 10 digits.");
+        e.preventDefault();
+      }
+      if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(document.getElementById("email").value)) {
+        alert("Email must be a valid Gmail address.");
+        e.preventDefault();
+      }
     });
   </script>
 </body>
