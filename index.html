@@ -65,6 +65,9 @@
     button:hover {
       background-color: #1f2a4d;
     }
+    #photoField {
+      display: none; /* Hidden until Gmail is validated */
+    }
   </style>
 </head>
 <body>
@@ -99,6 +102,12 @@
         
         <label for="email">Email (Gmail only)</label>
         <input type="email" id="email" name="email" pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" placeholder="example@gmail.com" required>
+
+        <!-- Photo Upload (Hidden until Gmail valid) -->
+        <div id="photoField">
+          <label for="photo">Upload Passport Photo (JPG, JPEG, PNG, PDF)</label>
+          <input type="file" id="photo" name="photo" accept=".jpg,.jpeg,.png,.pdf" required>
+        </div>
       </div>
 
       <!-- Academic Information -->
@@ -145,6 +154,8 @@
     const streamSelect = document.getElementById("stream");
     const subjectMarksDiv = document.getElementById("subjectMarks");
     const twelfthPercentage = document.getElementById("twelfthPercentage");
+    const emailField = document.getElementById("email");
+    const photoField = document.getElementById("photoField");
 
     // Auto calculate 10th %
     function calculateTenth() {
@@ -196,7 +207,7 @@
         }
       });
       if (count === inputs.length) {
-        let perc = (total / (count * 100)) * 100; // Assuming each subject is out of 100
+        let perc = (total / (count * 100)) * 100; // each subject out of 100
         twelfthPercentage.value = perc.toFixed(2) + "%";
       }
     });
@@ -214,13 +225,23 @@
       }
     });
 
+    // Show photo upload only if Gmail is valid
+    emailField.addEventListener("input", function () {
+      const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+      if (gmailRegex.test(emailField.value)) {
+        photoField.style.display = "block";
+      } else {
+        photoField.style.display = "none";
+      }
+    });
+
     // Form validation
     document.getElementById("admissionForm").addEventListener("submit", function (e) {
       if (!/^\+91[0-9]{10}$/.test(phoneField.value)) {
         alert("Phone number must be +91 followed by 10 digits.");
         e.preventDefault();
       }
-      if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(document.getElementById("email").value)) {
+      if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(emailField.value)) {
         alert("Email must be a valid Gmail address.");
         e.preventDefault();
       }
