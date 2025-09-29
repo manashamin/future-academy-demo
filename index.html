@@ -35,12 +35,16 @@
       border-radius: 6px;
       font-size: 14px;
     }
-    input[type="radio"] {
-      width: auto;
-      margin-right: 6px;
-    }
     .radio-group {
+      display: flex;
+      gap: 20px;
       margin: 8px 0;
+    }
+    .radio-group label {
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
     .section {
       margin-top: 25px;
@@ -65,10 +69,6 @@
     button:hover {
       background-color: #1f2a4d;
     }
-    /* photo visible by default */
-    #photoField {
-      display: block;
-    }
   </style>
 </head>
 <body>
@@ -76,7 +76,6 @@
     <h1>Future Academy Admission Form</h1>
     <form id="admissionForm">
 
-      <!-- Personal Information -->
       <div class="section">
         <h2>Personal Information</h2>
 
@@ -88,8 +87,8 @@
 
         <label>Gender</label>
         <div class="radio-group">
-          <input type="radio" id="male" name="gender" value="Male" required> Male
-          <input type="radio" id="female" name="gender" value="Female" required> Female
+          <label><input type="radio" name="gender" value="Male" required> Male</label>
+          <label><input type="radio" name="gender" value="Female" required> Female</label>
         </div>
 
         <label for="guardianName">Guardian's Name</label>
@@ -99,23 +98,18 @@
         <input type="text" id="relationship" name="relationship" required>
 
         <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" pattern="^[0-9]{10}$" placeholder="Enter 10-digit number" required>
-        
-        <label for="email">Email (Gmail only)</label>
-        <input type="email" id="email" name="email" pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" placeholder="example@gmail.com" required>
+        <input type="tel" id="phone" name="phone" required placeholder="+91XXXXXXXXXX">
 
-        <!-- Photo Upload (visible by default) -->
-        <div id="photoField">
-          <label for="photo">Upload Passport Photo (JPG, JPEG, PNG, PDF)</label>
-          <input type="file" id="photo" name="photo" accept=".jpg,.jpeg,.png,.pdf" required>
-        </div>
+        <label for="email">Email (Gmail only)</label>
+        <input type="email" id="email" name="email" required placeholder="example@gmail.com">
+
+        <label for="photo">Upload Passport Photo (JPG, JPEG, PNG, PDF)</label>
+        <input type="file" id="photo" name="photo" accept=".jpg,.jpeg,.png,.pdf" required>
       </div>
 
-      <!-- Academic Information -->
       <div class="section">
         <h2>Academic Information</h2>
 
-        <!-- 10th -->
         <h3>10th Standard</h3>
         <label for="tenthMarks">Total Marks Obtained</label>
         <input type="number" id="tenthMarks" name="tenthMarks" required>
@@ -124,7 +118,6 @@
         <label for="tenthPercentage">Percentage</label>
         <input type="text" id="tenthPercentage" name="tenthPercentage" readonly>
 
-        <!-- 12th -->
         <h3>12th Standard</h3>
         <label for="stream">Select Stream</label>
         <select id="stream" name="stream" required>
@@ -136,7 +129,6 @@
           <option value="commerce-bm">Commerce (with Business Maths)</option>
         </select>
 
-        <!-- Subject Marks Section -->
         <div id="subjectMarks" class="subject-marks"></div>
 
         <label for="twelfthPercentage">Percentage</label>
@@ -151,14 +143,12 @@
     const tenthMarks = document.getElementById("tenthMarks");
     const tenthMax = document.getElementById("tenthMax");
     const tenthPercentage = document.getElementById("tenthPercentage");
-
     const streamSelect = document.getElementById("stream");
     const subjectMarksDiv = document.getElementById("subjectMarks");
     const twelfthPercentage = document.getElementById("twelfthPercentage");
+    const phoneField = document.getElementById("phone");
     const emailField = document.getElementById("email");
-    const photoField = document.getElementById("photoField");
 
-    // Auto calculate 10th %
     function calculateTenth() {
       if (tenthMarks.value && tenthMax.value) {
         let perc = (parseFloat(tenthMarks.value) / parseFloat(tenthMax.value)) * 100;
@@ -168,7 +158,6 @@
     tenthMarks.addEventListener("input", calculateTenth);
     tenthMax.addEventListener("input", calculateTenth);
 
-    // 12th stream subjects
     const subjects = {
       "science-cs": ["Language", "English", "Physics", "Chemistry", "Mathematics", "Computer Science"],
       "science-bio": ["Language", "English", "Physics", "Chemistry", "Mathematics", "Biology"],
@@ -197,7 +186,6 @@
       }
     });
 
-    // Auto calculate 12th %
     subjectMarksDiv.addEventListener("input", function () {
       let inputs = subjectMarksDiv.querySelectorAll("input[type='number']");
       let total = 0, count = 0;
@@ -208,13 +196,11 @@
         }
       });
       if (count === inputs.length) {
-        let perc = (total / (count * 100)) * 100; // each subject out of 100
+        let perc = (total / (count * 100)) * 100;
         twelfthPercentage.value = perc.toFixed(2) + "%";
       }
     });
 
-    // Prepend +91 to phone
-    const phoneField = document.getElementById("phone");
     phoneField.addEventListener("focus", function () {
       if (!phoneField.value.startsWith("+91")) {
         phoneField.value = "+91";
@@ -226,17 +212,6 @@
       }
     });
 
-    // Show photo upload when Gmail valid — do not hide it (photo is visible by default)
-    emailField.addEventListener("input", function () {
-      const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-      if (gmailRegex.test(emailField.value)) {
-        photoField.style.display = "block";
-      } else {
-        // intentionally do not hide the photo field — keep visible
-      }
-    });
-
-    // Form validation
     document.getElementById("admissionForm").addEventListener("submit", function (e) {
       if (!/^\+91[0-9]{10}$/.test(phoneField.value)) {
         alert("Phone number must be +91 followed by 10 digits.");
